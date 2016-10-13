@@ -5,16 +5,32 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplestWebApplication", "SimplestWebApplication\SimplestWebApplication.csproj", "{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebLoadTestUtils", "WebLoadTestUtils\WebLoadTestUtils.csproj", "{B04237EA-2A14-48E2-B865-3F035345907D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Master|Any CPU = Master|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Staging|Any CPU = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Master|Any CPU.ActiveCfg = Release|Any CPU
+		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Master|Any CPU.Build.0 = Release|Any CPU
 		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Staging|Any CPU.ActiveCfg = Release|Any CPU
+		{8750ADBD-8BD1-4287-AB67-7C0D0AC7E4E1}.Staging|Any CPU.Build.0 = Release|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Master|Any CPU.ActiveCfg = Master|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Master|Any CPU.Build.0 = Master|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Staging|Any CPU.ActiveCfg = Staging|Any CPU
+		{B04237EA-2A14-48E2-B865-3F035345907D}.Staging|Any CPU.Build.0 = Staging|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
