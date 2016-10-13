@@ -6,13 +6,43 @@ using Autofac;
 
 namespace WebLoadTestUtils
 {
-	public static class TestExecutor
+	public class TestExecutor
 	{
-		public static void Execute<Tlogin, Ttest>(int amountTasks, IContainer container, TestParameters testParameters)
-			where Tlogin : ILoadTestLogin
-			where Ttest : ILoadTest
+		private Type _tLogin;
+		private readonly Dictionary<string, Type> _tTests = new Dictionary<string, Type>();
+
+		public void RegisterLogger<Tlogin>() where Tlogin : ILoadTestLogin
 		{
-			var testName = typeof(Ttest).Name;
+			_tLogin = typeof(Tlogin);
+		}
+		public void RegisterTest<Ttest>(string key) where Ttest : ILoadTest
+		{
+			_tTests.Add(key, typeof(Ttest));
+		}
+		public void RegisterTest<Ttest>() where Ttest : ILoadTest
+		{
+			_tTests.Add(typeof(Ttest).Name, typeof(Ttest));
+		}
+
+		public void ExecuteTests(int amountTasks, IContainer container, TestParameters testParameters)
+		{
+			foreach (var tTest in _tTests.Values)
+			{
+				Execute(_tLogin, tTest, amountTasks, container, testParameters);
+			}
+		}
+		public void ExecuteTests(string[] keys, int amountTasks, IContainer container, TestParameters testParameters)
+		{
+			foreach (var key in keys)
+			{
+				if (_tTests.ContainsKey(key))
+					Execute(_tLogin, _tTests[key], amountTasks, container, testParameters);
+			}
+		}
+
+		static void Execute(Type tLogin, Type tTest, int amountTasks, IContainer container, TestParameters testParameters)
+		{
+			var testName = tTest.Name;
 			using (var scope = container.BeginLifetimeScope())
 			{
 				var logger = scope.Resolve<ILogger>();
@@ -27,8 +57,8 @@ namespace WebLoadTestUtils
 				{
 					try
 					{
-						var loginClass = scope.Resolve<Tlogin>();
-						var testClass = scope.Resolve<Ttest>();
+						var loginClass = (ILoadTestLogin)scope.Resolve(tLogin);
+						var testClass = (ILoadTest)scope.Resolve(tTest);
 						var task = TestTaskExecutor.ExecuteAsync(i, testsWatcher, logger, testParameters, loginClass, testClass);
 						taskList.Add(task);
 					}
